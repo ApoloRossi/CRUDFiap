@@ -2,19 +2,24 @@
 import type {NextPage} from 'next';
 import { useState } from 'react';
 import { executeRequest } from '../services/api';
+import { Register } from './Register';
 
 type LoginProps = {
     setAccessToken(s:string) : void
-   
 }
-// setNewAccount(newAccount:boolean) : void
-//, setNewAccount
+
 export const Login : NextPage<LoginProps> = ({setAccessToken}) =>{
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+
+    const newAccountCall = () => {
+        return(
+            <Register setAccessToken={setAccessToken}/>
+        )
+    }
 
     const doLogin = async() => {
         try{
@@ -64,7 +69,7 @@ export const Login : NextPage<LoginProps> = ({setAccessToken}) =>{
                         value={password} onChange={e => setPassword(e.target.value)}/>
                 </div>
                 <button type='button' onClick={doLogin} disabled={loading}>{loading ? '...Carregando' : 'Login'}</button>
-                <div className='create-account'><pre>Não tem uma conta? <a href='' onClick={() => {}}>Cadastre-se</a></pre>
+                <div className='create-account'><pre>Não tem uma conta? <a href='' onClick={newAccountCall}>Cadastre-se</a></pre>
                 </div>
             </div>
         </div>

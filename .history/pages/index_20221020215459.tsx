@@ -3,14 +3,12 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { Login } from '../containers/Login'
-import { Register } from '../containers/Register'
 import { Principal } from '../containers/Principal'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
 
   const [accessToken, setAccessToken] = useState('');
-  const [newAccount, setNewAccount] = useState(true);
 
   useEffect(() => {
     if(typeof window !== 'undefined'){
@@ -23,14 +21,11 @@ const Home: NextPage = () => {
 
   return (
     <>
-      {
-      newAccount?
-        <Register setNewAccount={setNewAccount}/>
-      :!accessToken ? 
-        <Login setAccessToken={setAccessToken} /> //setNewAccount={setNewAccount} 
-      : 
+      {!accessToken ? 
+        <Login setAccessToken={setAccessToken}/> 
+        : 
         <Principal setAccessToken={setAccessToken}/>
-      }  
+      }
     </>
   );
 }

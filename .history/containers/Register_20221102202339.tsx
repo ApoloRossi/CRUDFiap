@@ -3,13 +3,11 @@ import type {NextPage} from 'next';
 import { useState } from 'react';
 import { executeRequest } from '../services/api';
 
-type LoginProps = {
+type RegiterProps = {
     setAccessToken(s:string) : void
-   
 }
-// setNewAccount(newAccount:boolean) : void
-//, setNewAccount
-export const Login : NextPage<LoginProps> = ({setAccessToken}) =>{
+
+export const Register : NextPage<RegiterProps> = ({setAccessToken}) =>{
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -38,7 +36,7 @@ export const Login : NextPage<LoginProps> = ({setAccessToken}) =>{
             }
         }catch(e : any){
             console.log('Ocorreu erro ao efetuar login:', e);
-            if(e?.response?.data?.error){
+            if(e?.response?.data?.error){ß
                 setError(e?.response?.data?.error);
             }else{
                 setError('Ocorreu erro ao efetuar login, tente novamente.');
@@ -64,8 +62,7 @@ export const Login : NextPage<LoginProps> = ({setAccessToken}) =>{
                         value={password} onChange={e => setPassword(e.target.value)}/>
                 </div>
                 <button type='button' onClick={doLogin} disabled={loading}>{loading ? '...Carregando' : 'Login'}</button>
-                <div className='create-account'><pre>Não tem uma conta? <a href='' onClick={() => {}}>Cadastre-se</a></pre>
-                </div>
+               
             </div>
         </div>
     );

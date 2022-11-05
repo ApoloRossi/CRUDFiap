@@ -11,6 +11,10 @@
 
     .form{
 
+        p.create-account{
+            padding: 40px;
+        }
+        
         p{
             text-align: center;
             color: $errorColor;
@@ -71,10 +75,6 @@
             border-radius: 12px;
             font-size: 16px;
             margin-top: 30px;
-        }
-
-        .create-account{
-            padding-top: 16px;
         }
     }
 

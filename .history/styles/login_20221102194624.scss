@@ -11,7 +11,7 @@
 
     .form{
 
-        p{
+        p.error{
             text-align: center;
             color: $errorColor;
             font-weight: bold;
@@ -73,8 +73,8 @@
             margin-top: 30px;
         }
 
-        .create-account{
-            padding-top: 16px;
+        p.create-account{
+            padding-top: 80px;
         }
     }
 

@@ -11,11 +11,20 @@
 
     .form{
 
+        .create-account{
+            padding-top: 80px;
+        }
+
+
         p{
             text-align: center;
             color: $errorColor;
             font-weight: bold;
             max-width: 300px;
+
+            &.create-account{
+                padding-top: 80px;
+            }
         }
 
         div{
@@ -71,10 +80,6 @@
             border-radius: 12px;
             font-size: 16px;
             margin-top: 30px;
-        }
-
-        .create-account{
-            padding-top: 16px;
         }
     }
 

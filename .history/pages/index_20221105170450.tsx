@@ -10,7 +10,7 @@ import styles from '../styles/Home.module.css'
 const Home: NextPage = () => {
 
   const [accessToken, setAccessToken] = useState('');
-  const [newAccount, setNewAccount] = useState(true);
+  const [newAccount, setNewAccount] = useState(false);
 
   useEffect(() => {
     if(typeof window !== 'undefined'){
@@ -27,7 +27,7 @@ const Home: NextPage = () => {
       newAccount?
         <Register setNewAccount={setNewAccount}/>
       :!accessToken ? 
-        <Login setAccessToken={setAccessToken} /> //setNewAccount={setNewAccount} 
+        <Login setAccessToken={setAccessToken} setNewAccount={setNewAccount}/> 
       : 
         <Principal setAccessToken={setAccessToken}/>
       }  

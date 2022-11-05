@@ -3,47 +3,44 @@ import type {NextPage} from 'next';
 import { useState } from 'react';
 import { executeRequest } from '../services/api';
 
-type LoginProps = {
-    setAccessToken(s:string) : void
-   
+type RegiterProps = {
+    setNewAccount(newAccounts:boolean) : void
 }
-// setNewAccount(newAccount:boolean) : void
-//, setNewAccount
-export const Login : NextPage<LoginProps> = ({setAccessToken}) =>{
+
+export const Register : NextPage<RegiterProps> = ({setNewAccount}) =>{
 
     const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
     const doLogin = async() => {
         try{
-            if(!email || !password){
+            if(!email || !password || !name){
                 return setError('Favor preencher os campos.');
             }
 
             setLoading(true);
 
             const body = {
-                login: email,
+                name,
+                email,
                 password
             };
 
-            const result = await executeRequest('login', 'POST', body);
-            if(result && result.data){
-               localStorage.setItem('accessToken', result.data.token);
-               localStorage.setItem('name', result.data.name);
-               localStorage.setItem('email', result.data.email);
-               setAccessToken(result.data.token);
-            }
+            await executeRequest('task', 'POST', body);
+            
         }catch(e : any){
             console.log('Ocorreu erro ao efetuar login:', e);
-            if(e?.response?.data?.error){
+            if(e?.response?.data?.error){ß
                 setError(e?.response?.data?.error);
             }else{
                 setError('Ocorreu erro ao efetuar login, tente novamente.');
             }
         }
+
+        setNewAccount(false)
 
         setLoading(false);
     }
@@ -55,6 +52,11 @@ export const Login : NextPage<LoginProps> = ({setAccessToken}) =>{
                 {error && <p>{error}</p>}
                 <div>
                     <img src='/mail.svg' alt='Login'/> 
+                    <input type="text" placeholder="Name" 
+                        value={email} onChange={e => setEmail(e.target.value)}/>
+                </div>
+                <div>
+                    <img src='/mail.svg' alt='Login'/> 
                     <input type="text" placeholder="Login" 
                         value={email} onChange={e => setEmail(e.target.value)}/>
                 </div>
@@ -63,9 +65,8 @@ export const Login : NextPage<LoginProps> = ({setAccessToken}) =>{
                     <input type="password" placeholder="Senha" 
                         value={password} onChange={e => setPassword(e.target.value)}/>
                 </div>
-                <button type='button' onClick={doLogin} disabled={loading}>{loading ? '...Carregando' : 'Login'}</button>
-                <div className='create-account'><pre>Não tem uma conta? <a href='' onClick={() => {}}>Cadastre-se</a></pre>
-                </div>
+                <button type='button' onClick={doLogin} disabled={loading}>{loading ? '...Salvando' : 'Cadastrar'}</button>
+               
             </div>
         </div>
     );

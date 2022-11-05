@@ -5,10 +5,8 @@ import { executeRequest } from '../services/api';
 
 type LoginProps = {
     setAccessToken(s:string) : void
-   
 }
-// setNewAccount(newAccount:boolean) : void
-//, setNewAccount
+
 export const Login : NextPage<LoginProps> = ({setAccessToken}) =>{
 
     const [email, setEmail] = useState('');
@@ -64,8 +62,7 @@ export const Login : NextPage<LoginProps> = ({setAccessToken}) =>{
                         value={password} onChange={e => setPassword(e.target.value)}/>
                 </div>
                 <button type='button' onClick={doLogin} disabled={loading}>{loading ? '...Carregando' : 'Login'}</button>
-                <div className='create-account'><pre>Não tem uma conta? <a href='' onClick={() => {}}>Cadastre-se</a></pre>
-                </div>
+                <p>Não tem uma conta? <a href='' >Cadastre-se</a></p>
             </div>
         </div>
     );

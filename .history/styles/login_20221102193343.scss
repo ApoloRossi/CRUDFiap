@@ -10,12 +10,15 @@
     }
 
     .form{
-
         p{
             text-align: center;
             color: $errorColor;
             font-weight: bold;
             max-width: 300px;
+        }
+
+        .p.create-account{
+            padding: 40px;
         }
 
         div{
@@ -71,10 +74,6 @@
             border-radius: 12px;
             font-size: 16px;
             margin-top: 30px;
-        }
-
-        .create-account{
-            padding-top: 16px;
         }
     }
 
