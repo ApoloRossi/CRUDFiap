@@ -3,7 +3,7 @@ import type {NextPage} from 'next';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { executeRequest } from '../services/api';
-import Router from 'next/router';
+
 
 export const Register : NextPage = () =>{
 
@@ -29,7 +29,7 @@ export const Register : NextPage = () =>{
 
             await executeRequest('user', 'POST', body);
 
-            Router.push("/")
+            useRouter().push("index")
             
         }catch(e : any){
             console.log('Ocorreu erro ao efetuar cadastro:', e);

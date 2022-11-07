@@ -24,7 +24,9 @@ const Home: NextPage = () => {
   return (
     <>
       {
-     !accessToken? 
+       accessToken=='newAccount'?
+       <Register setAccessToken={setAccessToken}/>
+      :!accessToken? 
         <Login setAccessToken={setAccessToken} setNewAccount={setNewAccount} /> 
       : 
         <Principal setAccessToken={setAccessToken}/>

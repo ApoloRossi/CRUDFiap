@@ -29,7 +29,7 @@ export const Register : NextPage = () =>{
 
             await executeRequest('user', 'POST', body);
 
-            Router.push("/")
+            Router.push("index")
             
         }catch(e : any){
             console.log('Ocorreu erro ao efetuar cadastro:', e);

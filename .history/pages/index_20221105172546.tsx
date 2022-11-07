@@ -10,12 +10,12 @@ import styles from '../styles/Home.module.css'
 const Home: NextPage = () => {
 
   const [accessToken, setAccessToken] = useState('');
-  const [newAccount, setNewAccount] = useState(false);
+  const [newAccount, setNewAccount] = useState(true);
 
   useEffect(() => {
     if(typeof window !== 'undefined'){
       const token = localStorage.getItem('accessToken');
-      if(token && token!='newAccount'){
+      if(token){
         setAccessToken(token);
       }
     }
@@ -24,9 +24,12 @@ const Home: NextPage = () => {
   return (
     <>
       {
-     !accessToken? 
-        <Login setAccessToken={setAccessToken} setNewAccount={setNewAccount} /> 
-      : 
+      
+      !accessToken ? 
+        <Login setAccessToken={setAccessToken} /> //setNewAccount={setNewAccount} 
+        : newAccount?
+        <Register setNewAccount={setNewAccount}/>
+        : 
         <Principal setAccessToken={setAccessToken}/>
       }  
     </>

@@ -15,7 +15,7 @@ const Home: NextPage = () => {
   useEffect(() => {
     if(typeof window !== 'undefined'){
       const token = localStorage.getItem('accessToken');
-      if(token && token!='newAccount'){
+      if(token){
         setAccessToken(token);
       }
     }
@@ -24,9 +24,12 @@ const Home: NextPage = () => {
   return (
     <>
       {
-     !accessToken? 
-        <Login setAccessToken={setAccessToken} setNewAccount={setNewAccount} /> 
-      : 
+      
+      !accessToken ? 
+        <Login setAccessToken={setAccessToken} setNewAccount={setNewAccount} /> //setNewAccount={setNewAccount} 
+        : newAccount?
+        <Register setNewAccount={setNewAccount}/>
+        : 
         <Principal setAccessToken={setAccessToken}/>
       }  
     </>

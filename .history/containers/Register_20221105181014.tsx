@@ -1,11 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 import type {NextPage} from 'next';
-import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { executeRequest } from '../services/api';
-import Router from 'next/router';
 
-export const Register : NextPage = () =>{
+type RegiterProps = {
+    setAccessToken(s:string) : void
+}
+
+export const Register : NextPage<RegiterProps> = ({setAccessToken}) =>{
 
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
@@ -28,8 +30,6 @@ export const Register : NextPage = () =>{
             };
 
             await executeRequest('user', 'POST', body);
-
-            Router.push("/")
             
         }catch(e : any){
             console.log('Ocorreu erro ao efetuar cadastro:', e);
@@ -39,6 +39,8 @@ export const Register : NextPage = () =>{
                 setError('Ocorreu erro ao efetuar cadastro, tente novamente.');
             }
         }
+
+        setAccessToken('')
 
         setLoading(false);
     }
