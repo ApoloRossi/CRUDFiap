@@ -46,6 +46,7 @@ export const Principal : NextPage<PrincipalProps> = ({setAccessToken}) =>{
             
             const result = await executeRequest('task'+filters, 'GET');
             if(result && result.data){
+                alert(result.data)
                setList(result.data);
             }
         }catch(e : any){

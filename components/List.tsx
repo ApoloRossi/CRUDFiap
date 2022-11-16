@@ -117,9 +117,18 @@ export const List : NextPage<ListProps> = ({list, getFilteredList}) =>{
                         <input type="text" placeholder='Nome da tarefa'
                             value={name} onChange={e => setName(e.target.value)}/>
                         <input type="date" placeholder='Data de previsão da tarefa'
-                            value={previsionDate} onChange={e => setPrevisionDate(e.target.value)}/>
-                        <input type="date" placeholder='Data de conclusão'
-                            value={finishDate} onChange={e => setFinishDate(e.target.value)}/>
+                            value={previsionDate} 
+                            onFocus={e => e.target.type = "date"}
+                            onChange={e => setPrevisionDate(e.target.value)}
+                            onBlur={(e) => { if(e.target.value == "") (e.target.type = "text")}
+                        }/>
+                        <input type="text" placeholder='Data de conclusão'
+                            value={finishDate} 
+                            onFocus={e => e.target.type = "date"}
+                            onChange={e => setFinishDate(e.target.value)}
+                            onBlur={(e) => { if(e.target.value == "") (e.target.type = "text")}
+                        }
+                            />
                 </Modal.Body>
                 <Modal.Footer>
                     <div className='button col-12'>
