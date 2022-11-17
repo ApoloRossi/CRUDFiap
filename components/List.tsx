@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import moment from 'moment';
+import moment from 'moment-timezone';
 import type {NextPage} from 'next';
 import { useState } from 'react';
 import { Modal } from 'react-bootstrap';
@@ -35,7 +35,8 @@ export const List : NextPage<ListProps> = ({list, getFilteredList}) =>{
         setShowModal(true);
         setName(task.name);
         setId(task._id || '');
-        setPrevisionDate(moment(task.finishPrevisionDate).format('yyyy-MM-DD'));
+        setPrevisionDate(moment.tz(task.finishPrevisionDate, "UTC").format('yyyy-MM-DD'));
+        //moment.tz(previsionDate, "UTC").format('DD/MM/yyyy')
     }
 
     const updateTask = async() => {
